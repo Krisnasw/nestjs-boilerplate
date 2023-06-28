@@ -1,73 +1,122 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# NestJS REST API Gateway + gRPC microservices
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project is a [monorepo](https://gomonorepo.org/) containing a REST API gateway with [gRPC](https://grpc.io/) back-end microservices all written using the NestJS Framework and TypeScript. This project is mainly used for learning/trial purposes only.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Architecture Overview
 
-## Description
+The REST API acts as a gateway/proxy for the different microservices it exposes. The controllers of the REST API make calls to the gRPC servers/microservices in the back-end. The gRPC microservices then handles the request to connect to databases or any other service it needs to serve requests.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Diagram
 
-## Installation
+A diagram of the architecture is shown below.
 
-```bash
-$ pnpm install
+![Architecture Diagram](https://raw.githubusercontent.com/benjsicam/nestjs-rest-microservices/master/docs/img/archi-diagram.png)
+
+### Design Patterns
+
+This architecture implements the following Microservice Design Patterns:
+
+1. [Microservice Architecture](https://microservices.io/patterns/microservices.html)
+2. [Subdomain Decomposition](https://microservices.io/patterns/decomposition/decompose-by-subdomain.html)
+3. [Externalized Configuration](https://microservices.io/patterns/externalized-configuration.html)
+4. [Remote Procedure Invocation](https://microservices.io/patterns/communication-style/rpi.html)
+5. [API Gateway](https://microservices.io/patterns/apigateway.html)
+6. [Database per Service](https://microservices.io/patterns/data/database-per-service.html)
+
+## Layers
+
+### API Layer
+
+[NestJS + Express](https://nestjs.com/) acts as the API Layer for the architecture. It takes care of listening for client requests and calling the appropriate back-end microservice to fulfill them.
+
+### Microservice Layer
+
+[gRPC](https://grpc.io/) was chosen as the framework to do the microservices. [Protocol buffers](https://developers.google.com/protocol-buffers/) was used as the data interchange format between the client (REST API) and the server (gRPC microservices). NestJS is still the framework used to create the gRPC Microservices.
+
+### Persistence Layer
+
+PostgreSQL is used as the database and Sequelize is used as the Object-Relational Mapper (ORM).
+
+## Deployment
+
+Deployment is done with containers in mind. A Docker Compose file along with Dockerfiles for each project are given to run the whole thing on any machine. For production, it's always recommended to use [Kubernetes](https://kubernetes.io/) for these kinds of microservices architecture to deploy in production. [Istio](https://istio.io/) takes care of service discovery, distributed tracing and other observability requirements.
+
+## Project Structure
+
+```
+.
+├── _proto
+├── api-gateway
+│   └── src
+│       ├── _proto
+│       ├── comments
+│       ├── commons
+│       ├── health-check
+│       ├── organizations
+│       ├── users
+│       └── utils
+├── docs
+├── microservices
+│   └── users-svc
+│       └── src
+│           ├── _proto
+│           ├── commons
+│           ├── database
+│           └── users
+└── scripts
 ```
 
-## Running the app
+### Project Organization
 
-```bash
-# development
-$ pnpm run start
+1. `_proto` - This directory consists of all the gRPC Service Definitions/Protocol Buffers.
 
-# watch mode
-$ pnpm run start:dev
+2. `api-gateway` - This directory consists of the API Gateway project. All code relating to the API Gateway resides here.
 
-# production mode
-$ pnpm run start:prod
-```
+3. `docs` - This directory consists of all files relating to documentation. The OpenAPI Specification for the REST API and the gRPC Service Definitions/Protocol Buffers documentation can be found here.
 
-## Test
+4. `microservices` - This directory consists of all microservice projects.
 
-```bash
-# unit tests
-$ pnpm run test
+5. `microservices/users-svc` - This directory consists of all files/code relating to the Users Microservice project.
 
-# e2e tests
-$ pnpm run test:e2e
+6. `scripts` - This directory consists of shell scripts that automates building and running the whole project.
 
-# test coverage
-$ pnpm run test:cov
-```
+## How to Run
 
-## Support
+1. System Requirements - must be Linux/Mac
+- [Node.js](https://nodejs.org/en/) - v12 Recommended
+- [Docker](https://docs.docker.com/install/) - latest
+- [Docker Compose](https://docs.docker.com/compose/install/) - latest
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+2. On the Terminal, go into the project's root folder (`cd /project/root/folder`) and execute `pnpm start`. The start script will install all npm dependencies for all projects, lint the code, compile the code, build the artifacts (Docker images) and run them via `docker-compose`.
 
-## Stay in touch
+3. Once the start script is done, the API Gateway will listening on [http://localhost:3000](http://localhost:3000)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+4. To test the API, head to the Swagger UI running at [http://localhost:8080](http://localhost:3000)
 
-## License
+![REST UI](https://raw.githubusercontent.com/benjsicam/nestjs-rest-microservices/master/docs/img/rest-ui.png)
 
-Nest is [MIT licensed](LICENSE).
+## Roadmap
+
+### General
+
+- [ ] Use RxJS Observables instead of Promises
+- [ ] Add Integration Tests
+- [ ] Add CI/CD Pipeline
+- [ ] Add Kubernetes Manifests
+- [x] Pre-populate DBs
+- [ ] Distributed Tracing
+- [ ] Add Prisma ORM
+
+### API Gateway
+
+- [ ] Add authentication
+- [ ] Add authorization
+- [ ] Add event sourcing
+- [ ] Add request/input data validation
+- [ ] Improve error handling
+
+### Microservices
+
+- [ ] Add health checks
+- [ ] Add caching
+- [ ] Improve error handling
