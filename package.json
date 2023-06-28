@@ -1,8 +1,8 @@
 {
   "name": "nest-boilerplate",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "A new way to setup nestjs boilerplate using GRPC + Restfull API",
+  "author": "Krisna Satria",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -12,12 +12,18 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "docs:proto-gen": "./scripts/generate-proto-docs.sh",
+    "install": "./scripts/install.sh",
+    "lint": "./scripts/lint.sh",
+    "internal-build": "./scripts/build.sh",
+    "docker:build": "docker-compose build",
+    "docker:start": "docker-compose up",
+    "docker:teardown": "docker-compose down -v"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
