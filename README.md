@@ -99,13 +99,13 @@ Deployment is done with containers in mind. A Docker Compose file along with Doc
 
 ### General
 
-- [ ] Use RxJS Observables instead of Promises
+- [x] Use RxJS Observables instead of Promises
 - [ ] Add Integration Tests
 - [ ] Add CI/CD Pipeline
 - [ ] Add Kubernetes Manifests
 - [x] Pre-populate DBs
 - [ ] Distributed Tracing
-- [ ] Add Prisma ORM
+- [x] Add TypeORM
 
 ### API Gateway
 
@@ -113,10 +113,10 @@ Deployment is done with containers in mind. A Docker Compose file along with Doc
 - [ ] Add authorization
 - [ ] Add event sourcing
 - [ ] Add request/input data validation
-- [ ] Improve error handling
+- [x] Improve error handling
 
 ### Microservices
 
 - [ ] Add health checks
 - [ ] Add caching
-- [ ] Improve error handling
+- [x] Improve error handling
