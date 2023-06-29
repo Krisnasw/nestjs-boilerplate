@@ -1,7 +1,7 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
-import { LoggerModule } from "nestjs-pino";
-import * as process from "process";
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { LoggerModule } from 'nestjs-pino';
+import * as process from 'process';
 
 @Module({
   imports: [
@@ -9,11 +9,12 @@ import * as process from "process";
     LoggerModule.forRoot({
       pinoHttp: {
         safe: true,
-        transport: process.env.NODE_ENV !== "production"
-          ? { target: "pino-pretty" }
-          : undefined
-      }
-    })
-  ]
+        transport:
+          process.env.NODE_ENV !== 'production'
+            ? { target: 'pino-pretty' }
+            : undefined,
+      },
+    }),
+  ],
 })
 export class AppModule {}
