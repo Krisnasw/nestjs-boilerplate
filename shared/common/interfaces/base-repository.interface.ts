@@ -1,18 +1,18 @@
 import { Paginated, PaginateQuery } from 'nestjs-paginate';
-import { AbstractEntity } from '@common/abstract.entity';
-import { FindQueryOption } from '@common/interfaces/find-query-option';
+import { AbstractEntity } from '../abstract.entity';
+import { FindQueryOption } from './find-query-option.interface';
 
 export interface BaseRepositoryInterface {
-    table: string;
-    queryClass: any;
+  table: string;
+  queryClass: any;
 
-    getPagination(query: PaginateQuery): Promise<Paginated<AbstractEntity | any>>;
+  getPagination(query: PaginateQuery): Promise<Paginated<AbstractEntity | any>>;
 
-    findEntity(id: string, option: FindQueryOption): Promise<AbstractEntity>;
+  findEntity(id: string, option: FindQueryOption): Promise<AbstractEntity>;
 
-    createEntity(dto: any): Promise<any>;
+  createEntity(dto: any): Promise<any>;
 
-    updateEntity(criteria: any, dto: any): Promise<AbstractEntity>;
+  updateEntity(criteria: any, dto: any): Promise<AbstractEntity>;
 
-    deleteEntity(id: string): Promise<any>;
+  deleteEntity(id: string): Promise<any>;
 }
