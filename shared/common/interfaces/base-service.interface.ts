@@ -4,7 +4,7 @@ import { FindQueryOption } from './find-query-option.interface';
 import { PaginationFormat } from './pagination-format.interface';
 import { AbstractEntity } from '../abstract.entity';
 export interface BaseServiceInterface {
-  getAll(query: PaginateQuery): Promise<PaginationFormat<any>>;
+  getAll(query: PaginateQuery): Promise<PaginationFormat<AbstractEntity>>;
 
   findOneById(
     id: string,

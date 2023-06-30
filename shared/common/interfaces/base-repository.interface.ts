@@ -8,11 +8,14 @@ export interface BaseRepositoryInterface {
 
   getPagination(query: PaginateQuery): Promise<Paginated<AbstractEntity | any>>;
 
-  findEntity(id: string, option: FindQueryOption): Promise<AbstractEntity>;
+  findEntity(
+    id: string,
+    option: FindQueryOption,
+  ): Promise<AbstractEntity | any>;
 
   createEntity(dto: any): Promise<any>;
 
   updateEntity(criteria: any, dto: any): Promise<AbstractEntity>;
 
-  deleteEntity(id: string): Promise<any>;
+  deleteEntity(id: string): Promise<AbstractEntity | any>;
 }

@@ -1,7 +1,10 @@
+import { AbstractEntity } from '@/shared/common/abstract.entity';
+import { plainToInstance } from 'class-transformer';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { UserDto } from '../dtos/users.dto';
 
 @Entity({ name: 'users' })
-export class User {
+export class User extends AbstractEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -13,4 +16,8 @@ export class User {
 
   @Column({ nullable: true })
   avatar: string;
+
+  toDto() {
+    return plainToInstance(UserDto, this);
+  }
 }

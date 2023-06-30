@@ -2,7 +2,7 @@ import { Exclude, Expose } from 'class-transformer/types/decorators';
 import { IsString } from 'class-validator';
 
 @Exclude()
-export class User {
+export class UserDto {
   @Expose()
   @IsString()
   id: string;

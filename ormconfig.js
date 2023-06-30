@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
-import { SnakeNamingStrategy } from './shared/typeorm/strategies/snake-naming.strategy';
+import { SnakeNamingStrategy } from '@shared/typeorm/strategies/snake-naming.strategy';
 
 dotenv.config({
   path: `.env`,
@@ -12,7 +12,7 @@ for (const envName of Object.keys(process.env)) {
 }
 
 export const AppDataSource = new DataSource({
-  type: 'mysql',
+  type: 'postgres',
   host: process.env.DB_HOST,
   port: +process.env.DB_PORT,
   username: process.env.DB_USERNAME,
@@ -22,7 +22,7 @@ export const AppDataSource = new DataSource({
   entities: ['microservices/**/*.entity{.ts,.js}'],
   migrations: ['migrations/*{.ts,.js}'],
   cli: {
-    migrationsDir: 'migrations',
+    migrationsDir: './migrations',
   },
-  poolSize: process.env.MYSQL_CONNECTION_LIMIT,
+  poolSize: process.env.DB_CONNECTION_LIMIT,
 });
