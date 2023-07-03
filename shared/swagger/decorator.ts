@@ -4,7 +4,7 @@ import { ConfigService } from '@shared/services/config.service';
 
 const configService = new ConfigService();
 
-export function ApiCustomerHeader() {
+export function ApiCustomHeader() {
   return applyDecorators(
     ApiHeaders([
       {

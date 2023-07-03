@@ -18,6 +18,7 @@ import {
 import { ConfigService } from '@/shared/services/config.service';
 import { NewrelicInterceptor } from '@/shared/interceptors/newrelic.interceptor';
 import { i18nValidationErrorFactory } from 'nestjs-i18n';
+import { setupSwagger } from '@/shared/swagger/setup';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -69,6 +70,10 @@ async function bootstrap() {
     header: configService.app.versionKey,
     defaultVersion: configService.app.versionDefault || VERSION_NEUTRAL,
   });
+
+  if (['development', 'staging'].includes(configService.nodeEnv)) {
+    setupSwagger(app, configService.swaggerConfig);
+  }
 
   const port = configService.getNumber('PORT') || 3000;
   const host = configService.get('HOST') || '127.0.0.1';

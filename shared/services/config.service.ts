@@ -7,6 +7,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm/dist';
 import { SnakeNamingStrategy } from '../typeorm/strategies/snake-naming.strategy';
 import * as path from 'path';
 import { IAwsConfig } from '../common/interfaces/aws.interface';
+import { ISwaggerConfigInterface } from '../common/interfaces/swagger.interface';
 
 export class ConfigService {
   constructor() {
@@ -289,6 +290,16 @@ export class ConfigService {
         path: path.join(__dirname, '../../assets/i18n/'),
         watch: true,
       },
+    };
+  }
+
+  get swaggerConfig(): ISwaggerConfigInterface {
+    return {
+      path: this.get('SWAGGER_PATH') || '/api/docs',
+      title: this.get('SWAGGER_TITLE') || 'B2H Microservice API',
+      description: this.get('SWAGGER_DESCRIPTION'),
+      version: this.get('SWAGGER_VERSION') || '0.0.1',
+      scheme: this.get('SWAGGER_SCHEME') === 'https' ? 'https' : 'http',
     };
   }
 }
