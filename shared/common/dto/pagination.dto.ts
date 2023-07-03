@@ -1,5 +1,5 @@
 import { IsNumber, Min, IsOptional, IsString } from 'class-validator';
-import { Exclude, Type } from 'class-transformer/types/decorators';
+import { Exclude, Type } from 'class-transformer';
 import { Injectable } from '@nestjs/common';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 

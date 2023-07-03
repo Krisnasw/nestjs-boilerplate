@@ -12,10 +12,10 @@
     "sourceMap": true,
     "allowJs": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "incremental": true,
     "paths": {
-      "@/*": ["*"],
+      "@/*": ["./*"],
       "@microservices/*": ["microservices/*"],
       "@shared/*": ["shared/*"],
       "@apigateway/*": ["api-gateway/*"],

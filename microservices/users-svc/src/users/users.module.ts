@@ -3,9 +3,12 @@ import { LoggerModule } from 'nestjs-pino';
 import { UserController } from './controllers/users.controller';
 import { UserService } from './services/users.service';
 import { UserRepository } from './repository/user.repository';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([User]),
     LoggerModule.forRoot({
       pinoHttp: {
         safe: true,
@@ -17,9 +20,6 @@ import { UserRepository } from './repository/user.repository';
     }),
   ],
   controllers: [UserController],
-  providers: [
-    { provide: 'UserService', useClass: UserService },
-    { provide: 'UserRepository', useValue: UserRepository },
-  ],
+  providers: [UserService, UserRepository],
 })
 export class UserModule {}

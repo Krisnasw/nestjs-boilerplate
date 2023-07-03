@@ -4,7 +4,7 @@ import { format, utcToZonedTime } from 'date-fns-tz';
 import { Injectable } from '@nestjs/common/decorators';
 import { RequestContext } from '@medibloc/nestjs-request-context';
 import { AbstractRequestContext } from '../contexts/AbstractRequestContext';
-import { Exclude, Expose, Transform } from 'class-transformer/types/decorators';
+import { Exclude, Expose, Transform } from 'class-transformer';
 
 @Exclude()
 @Injectable()
