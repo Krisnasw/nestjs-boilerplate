@@ -107,13 +107,15 @@ Deployment is done with containers in mind. A Docker Compose file along with Doc
 - [ ] Add authentication
 - [ ] Add authorization
 - [ ] Add event sourcing
-- [ ] Add request/input data validation
+- [x] Add request/input data validation
 - [ ] Add health checks
 - [x] Improve error handling
 - [x] Add Express Adapter
 - [x] Integrating with Newrelic APM
 - [x] Add Versioning support
 - [x] Add Rate Limiter
+- [x] Implement Swagger OpenAPI support
+- [x] Implement Translation i18n
 
 ### Microservices
 
