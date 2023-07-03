@@ -17,7 +17,8 @@
     "paths": {
       "@/*": ["*"],
       "@microservices/*": ["microservices/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@apigateway/*": ["api-gateway/*"],
     }
   },
   "exclude": [

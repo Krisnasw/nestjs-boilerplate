@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
-import { UserGatewayModule } from './users/user.module';
+
+import { UtilsModule } from '../utils/utils.module';
+import { UserController } from './user.controller';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    UtilsModule,
     LoggerModule.forRoot({
       pinoHttp: {
         safe: true,
@@ -15,7 +16,7 @@ import { UserGatewayModule } from './users/user.module';
             : undefined,
       },
     }),
-    UserGatewayModule,
   ],
+  controllers: [UserController],
 })
-export class AppModule {}
+export class UserGatewayModule {}
