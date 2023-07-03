@@ -49,10 +49,6 @@ Deployment is done with containers in mind. A Docker Compose file along with Doc
 ├── api-gateway
 │   └── src
 │       ├── _proto
-│       ├── comments
-│       ├── commons
-│       ├── health-check
-│       ├── organizations
 │       ├── users
 │       └── utils
 ├── docs
@@ -60,10 +56,9 @@ Deployment is done with containers in mind. A Docker Compose file along with Doc
 │   └── users-svc
 │       └── src
 │           ├── _proto
-│           ├── commons
-│           ├── database
 │           └── users
 └── scripts
+└── shared
 ```
 
 ### Project Organization
@@ -113,10 +108,14 @@ Deployment is done with containers in mind. A Docker Compose file along with Doc
 - [ ] Add authorization
 - [ ] Add event sourcing
 - [ ] Add request/input data validation
+- [ ] Add health checks
 - [x] Improve error handling
+- [x] Add Express Adapter
+- [x] Integrating with Newrelic APM
+- [x] Add Versioning support
+- [x] Add Rate Limiter
 
 ### Microservices
 
-- [ ] Add health checks
 - [ ] Add caching
 - [x] Improve error handling
