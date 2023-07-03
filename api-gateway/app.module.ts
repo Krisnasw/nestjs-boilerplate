@@ -1,10 +1,18 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { LoggerModule } from 'nestjs-pino';
+import { LoggerModule, PinoLogger } from 'nestjs-pino';
 import { UserGatewayModule } from './users/user.module';
+import { SharedModule } from '@/shared/shared.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigService } from '@/shared/services/config.service';
 
 @Module({
   imports: [
+    TypeOrmModule.forRootAsync({
+      imports: [SharedModule],
+      useFactory: (configService: ConfigService) => configService.typeOrmConfig,
+      inject: [ConfigService],
+    }),
     ConfigModule.forRoot(),
     LoggerModule.forRoot({
       pinoHttp: {

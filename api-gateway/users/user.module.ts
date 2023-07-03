@@ -3,6 +3,8 @@ import { LoggerModule } from 'nestjs-pino';
 
 import { UtilsModule } from '../utils/utils.module';
 import { UserController } from './user.controller';
+import { UserService } from '@/microservices/users-svc/src/users/services/users.service';
+import { UserRepository } from '@/microservices/users-svc/src/users/repository/user.repository';
 
 @Module({
   imports: [
@@ -18,5 +20,6 @@ import { UserController } from './user.controller';
     }),
   ],
   controllers: [UserController],
+  providers: [UserService, UserRepository],
 })
 export class UserGatewayModule {}

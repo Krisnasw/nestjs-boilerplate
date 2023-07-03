@@ -7,10 +7,5 @@ export const UsersServiceClientOptions: ClientOptions = {
     url: `${process.env.USER_SVC_HOST}:${process.env.USER_SVC_PORT}`,
     package: 'users',
     protoPath: join(__dirname, '../_proto/users.proto'),
-    loader: {
-      enums: String,
-      objects: true,
-      arrays: true,
-    },
   },
 };

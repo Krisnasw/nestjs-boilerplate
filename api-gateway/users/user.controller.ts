@@ -1,5 +1,4 @@
 import { Controller, Get, Inject, OnModuleInit } from '@nestjs/common';
-import { PinoLogger } from 'nestjs-pino';
 import { ClientGrpc } from '@nestjs/microservices';
 import { UsersServiceClientOptions } from './user-svc.option';
 import { UserService } from '@/microservices/users-svc/src/users/services/users.service';
@@ -10,11 +9,8 @@ import { PaginationFormat } from '@/shared/common/interfaces/pagination-format.i
 @Controller('users')
 export class UserController implements OnModuleInit {
   constructor(
-    private readonly logger: PinoLogger,
     @Inject(UsersServiceClientOptions) private readonly userClient: ClientGrpc,
-  ) {
-    logger.setContext(UserController.name);
-  }
+  ) {}
 
   private userService: UserService;
 
@@ -24,8 +20,6 @@ export class UserController implements OnModuleInit {
 
   @Get()
   async getAll(query: PaginateQuery): Promise<PaginationFormat<User>> {
-    this.logger.info('UserController#findAll.call', query);
-
     return this.userService.getAll(query);
   }
 }

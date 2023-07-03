@@ -9,7 +9,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
-    "start:dev": "tsc-watch -p tsconfig.build.json --onCompilationComplete \"tsc-alias -p tsconfig.build.json\" --onSuccess \"node dist/microservices/users-svc/src/main.js\"",
+    "start:dev": "tsc-watch -p tsconfig.build.json --onCompilationComplete \"tsc-alias -p tsconfig.build.json\" --onSuccess \"node dist/api-gateway/main.js\"",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "copy:asset-w": "cpx -w 'src/assets/**' 'dist/src/assets'",
