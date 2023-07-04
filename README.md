@@ -121,3 +121,6 @@ Deployment is done with containers in mind. A Docker Compose file along with Doc
 
 - [ ] Add caching
 - [x] Improve error handling
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=Krisnasw_nestjs-boilerplate)](https://sonarcloud.io/summary/new_code?id=Krisnasw_nestjs-boilerplate)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Krisnasw_nestjs-boilerplate&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Krisnasw_nestjs-boilerplate)
