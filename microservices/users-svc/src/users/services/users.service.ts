@@ -1,12 +1,12 @@
-import { AbstractEntity } from '@/shared/common/abstract.entity';
-import { AbstractDto } from '@/shared/common/dto/abstract.dto';
-import { BaseServiceInterface } from '@/shared/common/interfaces/base-service.interface';
-import { FindQueryOption } from '@/shared/common/interfaces/find-query-option.interface';
-import { PaginationFormat } from '@/shared/common/interfaces/pagination-format.interface';
+import { AbstractEntity } from '../../../../../shared/common/abstract.entity';
+import { AbstractDto } from '../../../../../shared/common/dto/abstract.dto';
+import { BaseServiceInterface } from '../../../../../shared/common/interfaces/base-service.interface';
+import { FindQueryOption } from '../../../../../shared/common/interfaces/find-query-option.interface';
+import { PaginationFormat } from '../../../../../shared/common/interfaces/pagination-format.interface';
 import { Injectable } from '@nestjs/common';
 import { PaginateQuery } from 'nestjs-paginate';
 import { UserRepository } from '../repository/user.repository';
-import { formatPagination } from '@/shared/typeorm/pagination/format.pagination';
+import { formatPagination } from '../../../../../shared/typeorm/pagination/format.pagination';
 import { User } from '../entities/user.entity';
 
 @Injectable()

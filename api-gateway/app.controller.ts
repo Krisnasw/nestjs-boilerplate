@@ -7,7 +7,7 @@ import {
   HealthCheck,
   HealthCheckService,
 } from '@nestjs/terminus';
-import { ConfigService } from '@shared/services/config.service';
+import { ConfigService } from '../shared/services/config.service';
 
 import { AppService } from './app.service';
 

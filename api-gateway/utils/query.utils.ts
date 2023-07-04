@@ -1,4 +1,4 @@
-import { RequestQuery } from '@/shared/common/interfaces/request-response.interface';
+import { RequestQuery } from '../../shared/common/interfaces/request-response.interface';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

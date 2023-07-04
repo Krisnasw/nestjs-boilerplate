@@ -8,14 +8,14 @@ import {
 } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { UsersServiceClientOptions } from './user-svc.option';
-import { UserService } from '@/microservices/users-svc/src/users/services/users.service';
+import { UserService } from '../../microservices/users-svc/src/users/services/users.service';
 import { PaginateQuery } from 'nestjs-paginate';
-import { User } from '@/microservices/users-svc/src/users/entities/user.entity';
-import { PaginationFormat } from '@/shared/common/interfaces/pagination-format.interface';
+import { User } from '../../microservices/users-svc/src/users/entities/user.entity';
+import { PaginationFormat } from '../../shared/common/interfaces/pagination-format.interface';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Pagination } from '@/shared/common/dto/pagination.dto';
-import { ApiCustomHeader } from '@/shared/swagger/decorator';
-import { TransformResponseInterceptor } from '@/shared/interceptors/response.interceptor';
+import { Pagination } from '../../shared/common/dto/pagination.dto';
+import { ApiCustomHeader } from '../../shared/swagger/decorator';
+import { TransformResponseInterceptor } from '../../shared/interceptors/response.interceptor';
 
 @ApiTags('Users')
 @ApiCustomHeader()

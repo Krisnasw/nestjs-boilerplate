@@ -1,5 +1,5 @@
-import { AbstractEntity } from '@/shared/common/abstract.entity';
-import { PaginationFormat } from '@/shared/common/interfaces/pagination-format.interface';
+import { AbstractEntity } from '../../../shared/common/abstract.entity';
+import { PaginationFormat } from '../../../shared/common/interfaces/pagination-format.interface';
 import { Paginated } from 'nestjs-paginate';
 
 export async function formatPagination<T extends AbstractEntity>(

@@ -14,12 +14,6 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "incremental": true,
-    "paths": {
-      "@/*": ["./*"],
-      "@microservices/*": ["microservices/*"],
-      "@shared/*": ["shared/*"],
-      "@apigateway/*": ["api-gateway/*"],
-    }
   },
   "exclude": [
     "node_modules",

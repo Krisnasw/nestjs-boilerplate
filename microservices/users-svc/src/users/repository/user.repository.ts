@@ -1,4 +1,4 @@
-import { AbstractRepository } from '@/shared/common/repositories/abstract.repository';
+import { AbstractRepository } from '../../../../../shared/common/repositories/abstract.repository';
 import { Injectable } from '@nestjs/common';
 import { User } from '../entities/user.entity';
 import { DataSource, QueryRunner } from 'typeorm';
@@ -9,12 +9,12 @@ import {
   paginate,
 } from 'nestjs-paginate';
 import { UserQuery } from '../queries/user.query';
-import { BaseRepositoryInterface } from '@/shared/common/interfaces/base-repository.interface';
-import { AbstractEntity } from '@/shared/common/abstract.entity';
+import { BaseRepositoryInterface } from '../../../../../shared/common/interfaces/base-repository.interface';
+import { AbstractEntity } from '../../../../../shared/common/abstract.entity';
 import {
   DefaultFindQueryOption,
   FindQueryOption,
-} from '@/shared/common/interfaces/find-query-option.interface';
+} from '../../../../../shared/common/interfaces/find-query-option.interface';
 
 @Injectable()
 export class UserRepository

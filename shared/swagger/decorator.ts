@@ -1,6 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiHeaders } from '@nestjs/swagger';
-import { ConfigService } from '@shared/services/config.service';
+import { ConfigService } from '../../shared/services/config.service';
 
 const configService = new ConfigService();
 

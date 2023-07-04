@@ -1,4 +1,4 @@
-import { AbstractEntity } from '@/shared/common/abstract.entity';
+import { AbstractEntity } from '../../../../../shared/common/abstract.entity';
 import { plainToInstance } from 'class-transformer';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { UserDto } from '../dtos/users.dto';

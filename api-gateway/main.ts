@@ -6,8 +6,8 @@ import {
   ExpressAdapter,
 } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
-import { ContextRequestInterceptor } from '@/shared/interceptors/context-request.interceptor';
-import { SharedModule } from '@/shared/shared.module';
+import { ContextRequestInterceptor } from '../shared/interceptors/context-request.interceptor';
+import { SharedModule } from '../shared/shared.module';
 import {
   NestInterceptor,
   ClassSerializerInterceptor,
@@ -15,10 +15,10 @@ import {
   VERSION_NEUTRAL,
   VersioningType,
 } from '@nestjs/common';
-import { ConfigService } from '@/shared/services/config.service';
-import { NewrelicInterceptor } from '@/shared/interceptors/newrelic.interceptor';
+import { ConfigService } from '../shared/services/config.service';
+import { NewrelicInterceptor } from '../shared/interceptors/newrelic.interceptor';
 import { i18nValidationErrorFactory } from 'nestjs-i18n';
-import { setupSwagger } from '@/shared/swagger/setup';
+import { setupSwagger } from '../shared/swagger/setup';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -82,6 +82,8 @@ async function bootstrap() {
   }
 
   await app.listen(port, host);
+
+  console.log(`server running on port ${host}:${port}`);
 }
 
 bootstrap();

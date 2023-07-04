@@ -3,9 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import * as process from 'process';
 import { UserModule } from './users/users.module';
-import { SharedModule } from '@/shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigService } from '@/shared/services/config.service';
+import { ConfigService } from '../../../shared/services/config.service';
 
 @Module({
   imports: [
