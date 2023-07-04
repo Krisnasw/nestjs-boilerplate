@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { LoggerModule, PinoLogger } from 'nestjs-pino';
+import { LoggerModule } from 'nestjs-pino';
 import { UserGatewayModule } from './users/user.module';
 import { SharedModule } from '@/shared/shared.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@/shared/services/config.service';
+import { RequestContextModule } from '@medibloc/nestjs-request-context';
+import { AbstractRequestContext } from '@/shared/common/contexts/AbstractRequestContext';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import '@shared/boilerplate.polyfill';
+import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
   imports: [
@@ -13,7 +18,6 @@ import { ConfigService } from '@/shared/services/config.service';
       useFactory: (configService: ConfigService) => configService.typeOrmConfig,
       inject: [ConfigService],
     }),
-    ConfigModule.forRoot(),
     LoggerModule.forRoot({
       pinoHttp: {
         safe: true,
@@ -23,7 +27,14 @@ import { ConfigService } from '@/shared/services/config.service';
             : undefined,
       },
     }),
+    RequestContextModule.forRoot({
+      contextClass: AbstractRequestContext,
+      isGlobal: true,
+    }),
+    TerminusModule,
     UserGatewayModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
